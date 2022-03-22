@@ -93,14 +93,25 @@
 -- HAVING SUM(SALESAMOUNT) < 100;
 
 -- TASK 3
--- USE PARTS;
+USE PARTS;
 -- 1.	Return the name and city of each project that’s not supplied by a London-based supplier
 
--- SELECT JNAME, CITY 
--- FROM PROJECT P
--- JOIN SUPPLY SP
--- 	ON P.J_ID = SP.J_ID
--- WHERE CITY != 'LONDON';
+-- SELECT
+-- JNAME, CITY
+-- FROM
+-- PROJECT
+-- WHERE
+-- J_ID NOT IN (SELECT
+-- J_ID
+-- FROM
+-- SUPPLY
+-- WHERE
+-- S_ID IN (SELECT
+-- S_ID
+-- FROM
+-- SUPPLIER
+-- WHERE
+-- CITY = 'LONDON'))
 
 
 
@@ -111,16 +122,18 @@
 
 -- USE PARTS;
 
--- SELECT SNAME, PNAME, JNAME
--- FROM SUPPLY SP
--- JOIN PROJECT P
--- 	ON P.J_ID = SP.J_ID
--- JOIN PART PA 
--- 	ON PA.P_ID = SP.P_ID
--- JOIN SUPPLIER S
--- 	ON S.S_ID = SP.S_ID
--- WHERE P.CITY = S.CITY = PA.CITY;
-
+-- SELECT
+-- SNAME, PNAME, JNAME
+-- FROM
+-- SUPPLY SY
+-- JOIN
+-- SUPPLIER SUP ON SY.S_ID = SUP.S_ID
+-- JOIN
+-- PART P ON P.P_ID = SY.P_ID
+-- JOIN
+-- PROJECT PJ ON SY.J_ID = PJ.J_ID
+-- WHERE
+-- SUP.CITY = P.CITY AND P.CITY = PJ.CITY
 
 
 
