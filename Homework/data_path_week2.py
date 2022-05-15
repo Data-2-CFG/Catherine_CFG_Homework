@@ -26,6 +26,12 @@ df = pdr.tiingo.TiingoDailyReader(tickers, start=start, end=end, api_key=api_key
 all_data = df.read()
 all_data
 
+all_data.columns
+
+import seaborn as sns
+sns.set(rc={'figure.figsize':(22, 8)})
+sns.lineplot(data=all_data, x='date', y='adjClose', hue='symbol');
+
 # Import matplotlib
 import matplotlib.pyplot as plt 
 
@@ -47,24 +53,25 @@ plt.show()
 1.   Overall:
 *   The percentage change graph for each company is normally distributed
  
-*  The majority of time, these four leading big companies have steady stock prices, because the mode/median/mean of percentage change is same, positive and negative changes are small with 0.1%
+*  The majority of the time, these four leading big companies have steadily increasing or decreasing stock prices (likely following general market sentiment). 
 
+*  All four companies are big-brand and well-known entities, and besides Telsa, much of their potential future earnings are 'priced in'. Although from the adjusted close price graph Telsa, Microsoft, and Twitter show generally increasing valuations.
 
 ---
 
 
 
-2.   Individual:
+2.   Individual Plots:
 
 
-*   Tesla's graph is less skewed than other three, it means its stock price had ups and downs, there are more changes than other three, and there were more than 35 days it had negative percentage change, which indicating the stock price decreased during this period, but on the positive side, there are larger blue area than negative side, it shows Tesla'stock had positive growth for most of time
+*   Tesla's graph is less centered around zero which shows how its stock price has greater variance up and down. This is to say, there are more dramatic than the other three, and there were more than 35 days where there was a negative percentage change, which indicates the stock price decreased during this period, but on the positive side having such price changes can help those with strategies relying on variable price.
 
-*   Microsoft's graph is more skewed than other three, it means its stock price is relatively steadier than others, most of time the changes are closing 0.0%, these days are more than 50 days
+*   Microsoft's graph is much more tightly centered around zero than the other three, meaning its stock price is relatively steadier than others, most of the time the changes close around 0%, and at zero for more than 50 days
 
 
-*  For more than 60 days,  BP'stock price had negtive growth , good days and bad days are evenly close, there are few days, stock price went up 0.2% more, there are also few days, it had 0.19% drop
+*  For more than 60 days,  BP'stock price had negative growth, good days and bad days are roughly even, with swings of -0.2% to 0.2%. This likely correlates with oil price changes, general economic outlook, and political developments around oil-producing countries / OPEC price announcements.
 
-*   For more than 50 days , Twitter'stock price had positive growth, there were few days, it had more than 0.2% drop
+*   For more than 50 days, Twitter'stock price had positive growth, there were a few days, and it had more than a 0.2% drop. It appears to stand between Microsoft and Telsa in terms of variability. 
 
 
 
